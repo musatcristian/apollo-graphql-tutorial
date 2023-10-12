@@ -84,19 +84,18 @@ remote = remote-origin
 merge = refs/heads/setup/add-rest-data-source
 
 #### SSH Config examples
-
 #cristutz00@gmail.com
 Host personal
-HostName github.com
-AddKeysToAgent yes
-UseKeychain no
-User git
-IdentityFile ~/.ssh/cristutz_github
+  	HostName github.com
+  	AddKeysToAgent yes
+  	UseKeychain no
+  	User git
+  	IdentityFile ~/.ssh/cristutz_github
 
 #cmusat@mavrck.co
 Host github.com
-HostName github.com
-#AddKeysToAgent yes
-#UseKeychain no
-User git
-IdentityFile ~/.ssh/mavrck_no_password
+	HostName github.com
+  	#AddKeysToAgent yes
+  	#UseKeychain no
+	User git
+  	IdentityFile ~/.ssh/mavrck_no_password
