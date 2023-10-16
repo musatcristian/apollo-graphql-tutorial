@@ -1,6 +1,6 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
 import { BASE_DATASOURCE_URL } from "../constants";
-import { AuthorModel, TrackModel } from "../models";
+import { ModuleModel, TrackModel } from "../models";
 
 export class TrackAPI extends RESTDataSource {
   baseURL = BASE_DATASOURCE_URL;
@@ -18,7 +18,11 @@ export class TrackAPI extends RESTDataSource {
     return t;
   }
 
-  async getAuthor(authorId: string) {
-    return await this.get<AuthorModel>(`author/${encodeURIComponent(authorId)}`);
+  async getTrack(trackId: string) {
+    return await this.get<TrackModel>(`track/${encodeURIComponent(trackId)}`);
+  }
+
+  async getTrackModules(trackId: string) {
+    return await this.get<ModuleModel[]>(`track/${trackId}/modules`);
   }
 }

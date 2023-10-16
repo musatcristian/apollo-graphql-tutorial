@@ -3,7 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 // import { addMocksToSchema } from "@graphql-tools/mock";
 // import { makeExecutableSchema } from "@graphql-tools/schema";
 
-import { TrackAPI } from "./datasources";
+import { AuthorAPI, ModuleAPI, TrackAPI } from "./datasources";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
 
@@ -49,6 +49,12 @@ export const StartApolloServer = async () => {
         dataSource: {
           trackAPI: new TrackAPI({
             cache: cache,
+          }),
+          authorAPI: new AuthorAPI({
+            cache,
+          }),
+          moduleAPI: new ModuleAPI({
+            cache,
           }),
         },
       };

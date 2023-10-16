@@ -1,14 +1,14 @@
 import { DataSourceContext } from "../context";
-import { TrackModel } from "../models";
-import { Author, Resolver, ResolverTypeWrapper } from "../types";
+import { AuthorModel, TrackModel } from "../models";
+import { Resolver, ResolverTypeWrapper } from "../types";
 
-export const authorResolver: Resolver<ResolverTypeWrapper<Author>, TrackModel, DataSourceContext, {}> = (
-  parent,
-  args,
-  context,
-  info
-) => {
-  const { trackAPI } = context.dataSource;
+export const authorResolver: Resolver<
+  ResolverTypeWrapper<AuthorModel>,
+  TrackModel,
+  DataSourceContext,
+  {}
+> = (parent, args, context, info) => {
+  const { authorAPI } = context.dataSource;
   const { authorId } = parent;
-  return trackAPI.getAuthor(authorId);
+  return authorAPI.getAuthor(authorId);
 };
