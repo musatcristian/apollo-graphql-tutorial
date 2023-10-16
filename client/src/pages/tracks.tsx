@@ -1,25 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { gql } from "../__generated__";
 import { Layout, QueryResult } from "../components";
 import { TrackCard } from "../containers";
-
-const TRACKS = gql(`
-    query TracksQuery {
-        tracksForHome {
-            id
-            duration
-            modulesCount
-            thumbnail
-            title
-            author {
-            name
-            photo
-            id
-            }
-        }
-    }
-`);
+import { TRACKS } from "../graphql";
 
 /**
  * Tracks Page is the Catstronauts home page.
@@ -40,8 +23,8 @@ const Tracks = () => {
     setTracks(newTracks);
   }, [data, loading, error]);
 
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
+  // if (loading) return "Loading...";
+  // if (error) return `Error! ${error.message}`;
   return (
     <Layout grid>
       <QueryResult loading={loading} error={error} data={data}>

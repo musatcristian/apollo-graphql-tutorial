@@ -2,7 +2,7 @@ import { CodegenConfig } from "@graphql-codegen/cli";
 import { API_URL } from "./src/constants";
 
 const config: CodegenConfig = {
-  documents: ["src/**/*.tsx"],
+  documents: ["src/graphql/*.ts"],
   generates: {
     "./src/__generated__/": {
       preset: "client",
