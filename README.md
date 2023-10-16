@@ -33,3 +33,71 @@ This will open up `localhost:3000` in your web browser.
 ## Getting Help
 
 For any issues or problems concerning the course content, please refer to the [Odyssey topic in our community forums](https://community.apollographql.com/tags/c/help/6/odyssey).
+
+##### GIT CONFIG examples
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "remote-github"]
+	# url = git@github.com:musatcristian/cla-lessons.git
+	url = git@personal:musatcristian/cla-lessons.git
+	fetch = +refs/heads/*:refs/remotes/remote-github/*
+[user]
+	name = Cristian Musat
+	email = cristutz00@gmail.com
+	signingkey = /Users/cristianmusat/.ssh/cristutz_github.pub
+[pull]
+	ff = only
+[gpg]
+	format = ssh
+[branch "main"]
+	remote = remote-github
+	merge = refs/heads/main
+
+
+
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "remote-origin"]
+	url = git@personal:musatcristian/apollo-graphql-tutorial.git
+	fetch = +refs/heads/main:refs/remotes/remote-origin/main
+[user]
+	name = Cristian Musat
+	email = cristutz00@gmail.com
+	signingkey = /Users/cristianmusat/.ssh/cristutz_github.pub
+[pull]
+	ff = only
+[gpg]
+	format = ssh
+[branch "main"]
+	remote = remote-origin
+	merge = refs/heads/main
+[branch "setup/add-rest-data-source"]
+	remote = remote-origin
+	merge = refs/heads/setup/add-rest-data-source
+
+#### SSH Config examples
+#cristutz00@gmail.com
+Host personal
+  	HostName github.com
+  	AddKeysToAgent yes
+  	UseKeychain no
+  	User git
+  	IdentityFile ~/.ssh/cristutz_github
+
+#cmusat@mavrck.co
+Host github.com
+	HostName github.com
+  	#AddKeysToAgent yes
+  	#UseKeychain no
+	User git
+  	IdentityFile ~/.ssh/mavrck_no_password
