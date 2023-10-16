@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { Link } from "react-router-dom";
 import type { Track } from "../__generated__/graphql";
 import { colors, mq } from "../styles";
 import { humanReadableTimeFromSeconds } from "../utils/helpers";
@@ -8,11 +9,13 @@ import { humanReadableTimeFromSeconds } from "../utils/helpers";
  * Track Card component renders basic info in a card format
  * for each track populating the tracks grid homepage.
  */
-export const TrackCard: React.FC<{ track: Track }> = ({ track }) => {
-  const { title, thumbnail, author, duration, modulesCount } = track;
+export const TrackCard: React.FC<{ track: Omit<Track, "modules"> }> = ({
+  track,
+}) => {
+  const { title, thumbnail, author, duration, modulesCount, id } = track;
 
   return (
-    <CardContainer>
+    <CardContainer to={`track/${id}`}>
       <CardContent>
         <CardImageContainer>
           <CardImage src={thumbnail || ""} alt={title} />
@@ -24,7 +27,8 @@ export const TrackCard: React.FC<{ track: Track }> = ({ track }) => {
             <AuthorAndTrack>
               <AuthorName>{author.name}</AuthorName>
               <TrackLength>
-                {modulesCount} modules - {humanReadableTimeFromSeconds(duration || 0)}
+                {modulesCount} modules -{" "}
+                {humanReadableTimeFromSeconds(duration || 0)}
               </TrackLength>
             </AuthorAndTrack>
           </CardFooter>
@@ -37,7 +41,7 @@ export const TrackCard: React.FC<{ track: Track }> = ({ track }) => {
 // export default TrackCard;
 
 /** Track Card styled components */
-const CardContainer = styled.div({
+const CardContainer = styled(Link)({
   borderRadius: 6,
   color: colors.text,
   backgroundSize: "cover",
