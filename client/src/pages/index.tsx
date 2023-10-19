@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 /** importing our pages */
-import { TrackLayout } from "./trackLayout";
-import Tracks from "./tracks";
+import { ModulePage } from "./module-page";
+import { TrackLayout } from "./track-page";
+import Tracks from "./tracks-page";
 
 export default function Pages() {
   return (
@@ -9,6 +10,10 @@ export default function Pages() {
       <Routes>
         <Route element={<Tracks />} path="/" />
         <Route element={<TrackLayout />} path="/track/:trackId" />
+        <Route
+          element={<ModulePage />}
+          path="/track/:trackId/module/:moduleId"
+        />
       </Routes>
     </BrowserRouter>
   );

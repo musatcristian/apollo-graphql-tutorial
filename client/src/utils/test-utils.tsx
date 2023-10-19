@@ -1,12 +1,22 @@
-import React, { ComponentProps } from 'react';
-import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom'
-import '@testing-library/jest-dom/extend-expect';
-import { MockedProvider } from '@apollo/client/testing';
+import { MockedProvider } from "@apollo/client/testing";
+import "@testing-library/jest-dom/extend-expect";
+import { RenderOptions, render } from "@testing-library/react";
+import React, { ComponentProps, ReactNode } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 const renderApollo = (
   node: React.ReactElement,
-  { mocks, addTypename, defaultOptions, cache, resolvers, ...options }: Pick<ComponentProps<typeof MockedProvider>, 'mocks' | 'addTypename' | 'defaultOptions' | 'cache' | 'resolvers'>
+  {
+    mocks,
+    addTypename,
+    defaultOptions,
+    cache,
+    resolvers,
+    ...options
+  }: Pick<
+    ComponentProps<typeof MockedProvider>,
+    "mocks" | "addTypename" | "defaultOptions" | "cache" | "resolvers"
+  >
 ) => {
   return render(
     <MockedProvider
@@ -22,13 +32,18 @@ const renderApollo = (
   );
 };
 
-export const renderWithRouterGenerator = (renderer) => (node, options) => {
-  return renderer(<BrowserRouter>{node}</BrowserRouter>, options)
-}
+export const renderWithRouterGenerator =
+  (renderer: Partial<typeof render>) =>
+  (node: ReactNode, options: RenderOptions) => {
+    return (renderer as typeof render)(
+      <BrowserRouter>{node}</BrowserRouter>,
+      options
+    );
+  };
 
-export const renderWithRouter = renderWithRouterGenerator(render)
+export const renderWithRouter = renderWithRouterGenerator(render);
 
-export const renderApolloWithRouter = renderWithRouterGenerator(renderApollo)
+export const renderApolloWithRouter = renderWithRouterGenerator(renderApollo);
 
-export * from '@testing-library/react';
+export * from "@testing-library/react";
 export { renderApollo };

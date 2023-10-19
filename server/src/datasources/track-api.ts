@@ -19,7 +19,13 @@ export class TrackAPI extends RESTDataSource {
   }
 
   async getTrack(trackId: string) {
-    return await this.get<TrackModel>(`track/${encodeURIComponent(trackId)}`);
+    const res = await this.get<TrackModel>(
+      `track/${encodeURIComponent(trackId)}`
+    );
+    return {
+      ...res,
+      duration: res.length,
+    };
   }
 
   async getTrackModules(trackId: string) {

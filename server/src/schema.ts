@@ -7,7 +7,7 @@ export const typeDefs = gql`
   type Query {
     "Get tracks array for homepage grid"
     tracksForHome: [Track!]!
-    author: [Author!]!
+    author: Author!
     "Returns Track details by ID, can be null"
     track(trackId: ID!): Track!
     module(moduleId: ID!): Module!
@@ -20,7 +20,7 @@ export const typeDefs = gql`
     "The Author of a Track , has name, photo and id"
     author: Author!
     thumbnail: String
-    "Duration of a Track in seconds"
+    "Duration of a Track in minutes"
     duration: Int
     "How many modules the Track has"
     modulesCount: Int
@@ -43,7 +43,14 @@ export const typeDefs = gql`
     id: ID!
     "The Module's title"
     title: String!
-    "The Module's length in minutes"
-    length: Int
+    "The Module's length in seconds"
+    length: Int!
+    "The Track this module belongs to, its just one, can be null"
+    track: Track
+    "The Author of the module"
+    author: Author!
+    topic: String!
+    content: String!
+    videoUrl: String!
   }
 `;
