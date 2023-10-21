@@ -8,7 +8,8 @@
     logallrefupdates = true
     ignorecase = true
     precomposeunicode = true
-    [remote "remote-github"] # url = git@github.com:musatcristian/cla-lessons.git
+[remote "remote-github"]
+    # url = git@github.com:musatcristian/cla-lessons.git
     url = git@personal:musatcristian/cla-lessons.git
     fetch = +refs/heads/_:refs/remotes/remote-github/_
 [user]
