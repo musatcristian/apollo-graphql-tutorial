@@ -1,10 +1,10 @@
 import { DataSourceContext } from "../context";
-import { AuthorModel, TrackModel } from "../models";
+import { AuthorModel, ModuleModel, TrackModel } from "../models";
 import { Resolver, ResolverTypeWrapper } from "../types";
 
 export const authorResolver: Resolver<
   ResolverTypeWrapper<AuthorModel>,
-  TrackModel,
+  TrackModel | ModuleModel,
   DataSourceContext,
   {}
 > = (parent, args, context, info) => {

@@ -15,12 +15,16 @@ export const tracksForHomeResolver: Resolver<
 
 export const trackResolver: Resolver<
   ResolverTypeWrapper<TrackModel>,
-  {},
+  ModuleModel,
   DataSourceContext,
-  { trackId: string }
+  { trackId?: string }
 > = (parent, args, context, info) => {
   const { trackAPI } = context.dataSource;
-  const { trackId } = args;
+  const trackId: string | undefined = args.trackId || parent.trackId;
+
+  if (!trackId) {
+    throw new Error("No Track ID was provided");
+  }
 
   return trackAPI.getTrack(trackId);
 };

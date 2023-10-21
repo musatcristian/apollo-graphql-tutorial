@@ -5,7 +5,7 @@ import React, { PropsWithChildren } from "react";
 
 interface QueryResultProps {
   loading: boolean;
-  error?: ApolloError | undefined;
+  error?: Error | ApolloError | undefined;
   data?: unknown;
 }
 

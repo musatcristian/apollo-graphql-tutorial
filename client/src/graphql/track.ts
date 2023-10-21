@@ -13,6 +13,11 @@ export const TRACKS = gql(`
                 photo
                 id
             }
+            modules {
+                id
+                length
+                title
+            }
         }
     }
 `);
@@ -23,6 +28,7 @@ export const GET_TRACK = gql(`
             id
             title
             author {
+                id
                 name
                 photo
             }
@@ -32,8 +38,16 @@ export const GET_TRACK = gql(`
             description
             numberOfViews
             modules {
+                id
                 length
                 title
+                author {
+                    id
+                    name
+                }
+                topic
+                content
+                videoUrl
             }
             description
         }

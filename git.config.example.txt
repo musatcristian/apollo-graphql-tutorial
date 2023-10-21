@@ -1,0 +1,50 @@
+
+##### GIT CONFIG examples
+
+[core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = true
+[remote "remote-github"]
+    # url = git@github.com:musatcristian/cla-lessons.git
+    url = git@personal:musatcristian/cla-lessons.git
+    fetch = +refs/heads/_:refs/remotes/remote-github/_
+[user]
+    name = Cristian Musat
+    email = cristutz00@gmail.com
+    signingkey = /Users/cristianmusat/.ssh/cristutz_github.pub
+[pull]
+    ff = only
+[gpg]
+    format = ssh
+[branch "main"]
+    remote = remote-github
+    merge = refs/heads/main
+
+[core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = true
+[remote "remote-origin"]
+    url = git@personal:musatcristian/apollo-graphql-tutorial.git
+    fetch = +refs/heads/main:refs/remotes/remote-origin/main
+[user]
+    name = Cristian Musat
+    email = cristutz00@gmail.com
+    signingkey = /Users/cristianmusat/.ssh/cristutz_github.pub
+[pull]
+    ff = only
+[gpg]
+    format = ssh
+[branch "main"]
+    remote = remote-origin
+    merge = refs/heads/main
+[branch "setup/add-rest-data-source"]
+    remote = remote-origin
+    merge = refs/heads/setup/add-rest-data-source
