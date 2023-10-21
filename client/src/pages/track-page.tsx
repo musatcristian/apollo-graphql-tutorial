@@ -11,8 +11,6 @@ interface TrackDetailsProps extends PropsWithChildren {}
 export const TrackLayout: FC<TrackDetailsProps> = () => {
   const { trackId = "" } = useParams();
 
-  console.info("GASGGD", trackId);
-
   const { loading, error, data } = useQuery(GET_TRACK, {
     variables: {
       trackId,
@@ -21,7 +19,6 @@ export const TrackLayout: FC<TrackDetailsProps> = () => {
 
   return (
     <Layout>
-      TRACKPAGE
       <QueryResult error={error} loading={loading} data={data?.track}>
         {data?.track && <TrackDetail track={data.track} />}
       </QueryResult>
