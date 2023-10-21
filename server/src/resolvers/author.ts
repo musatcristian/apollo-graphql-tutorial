@@ -6,9 +6,14 @@ export const authorResolver: Resolver<
   ResolverTypeWrapper<AuthorModel>,
   TrackModel | ModuleModel,
   DataSourceContext,
-  {}
+  { authorId?: string }
 > = (parent, args, context, info) => {
   const { authorAPI } = context.dataSource;
-  const { authorId } = parent;
+
+  const authorId: string | undefined = args.authorId || parent.authorId;
+
+  if (!authorId) {
+    throw new Error("No Track ID was provided");
+  }
   return authorAPI.getAuthor(authorId);
 };

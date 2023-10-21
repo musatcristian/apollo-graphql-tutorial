@@ -2,15 +2,20 @@ import gql from "graphql-tag";
 
 export const typeDefs = gql`
   """
-  Main file schema definitions
+  Query entry point
   """
   type Query {
     "Get tracks array for homepage grid"
     tracksForHome: [Track!]!
-    author: Author!
+    author(authorId: ID): Author!
     "Returns Track details by ID, can be null"
     track(trackId: ID!): Track!
     module(moduleId: ID!): Module!
+  }
+
+  "Mutation entry point"
+  type Mutation {
+    incrementTrackViews(trackId: ID!): IncrementTrackViewsResponse!
   }
 
   " A track is a group of Modules that teaches about a specific topic "
@@ -52,5 +57,17 @@ export const typeDefs = gql`
     topic: String!
     content: String!
     videoUrl: String!
+  }
+
+  "Return type for Track Views increment Mutation"
+  type IncrementTrackViewsResponse {
+    "Similar to HTTP status code, represents the status of the mutation"
+    code: Int!
+    "Indicates whether the mutation was successful"
+    success: Boolean!
+    "Human-readable message for the UI"
+    message: String!
+    "Newly updated track after a successful mutation"
+    track: Track
   }
 `;
