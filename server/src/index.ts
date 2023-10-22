@@ -3,6 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 // import { addMocksToSchema } from "@graphql-tools/mock";
 // import { makeExecutableSchema } from "@graphql-tools/schema";
 
+import { DataSourceContext } from "./context";
 import { AuthorAPI, ModuleAPI, TrackAPI } from "./datasources";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./schema";
@@ -37,7 +38,7 @@ export const StartApolloServer = async () => {
   //   }),
   // });
 
-  const server = new ApolloServer({
+  const server = new ApolloServer<DataSourceContext>({
     typeDefs,
     resolvers,
   });
@@ -58,6 +59,9 @@ export const StartApolloServer = async () => {
           }),
         },
       };
+    },
+    listen: {
+      port: 8080,
     },
   });
 

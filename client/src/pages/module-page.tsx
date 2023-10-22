@@ -29,7 +29,14 @@ export const ModulePage: FC<PropsWithChildren> = () => {
   const { loading, data, error } = customUseQuery(trackId);
 
   useEffect(() => {
-    if (loading || error || !moduleId || !data || !data.track) {
+    if (
+      loading ||
+      error ||
+      !moduleId ||
+      !data ||
+      !data.track ||
+      !data.track.modules
+    ) {
       return;
     }
 
@@ -39,7 +46,6 @@ export const ModulePage: FC<PropsWithChildren> = () => {
 
   return (
     <Layout>
-      MODULEPAGE
       <QueryResult loading={loading} error={error} data={selectedModule}>
         {data?.track && selectedModule && (
           <ModuleDetail module={selectedModule} track={data.track} />

@@ -12,3 +12,10 @@ export type TrackModel = {
   description: string;
   numberOfViews: number;
 };
+
+export type IncrementTrackViewsResponseModel = {
+  code: number;
+  success: boolean;
+  message: string;
+  track: TrackModel | null;
+};

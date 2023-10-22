@@ -1,7 +1,10 @@
+import { useMutation } from "@apollo/client/react/hooks";
 import styled from "@emotion/styled";
 import React from "react";
 import { Link } from "react-router-dom";
+
 import type { Track } from "../__generated__/graphql";
+import { INCREMENT_TRACK_VIEWS } from "../graphql";
 import { colors, mq } from "../styles";
 import { humanReadableTimeFromSeconds } from "../utils/helpers";
 
@@ -14,8 +17,25 @@ export const TrackCard: React.FC<{ track: Omit<Track, "modules"> }> = ({
 }) => {
   const { title, thumbnail, author, duration, modulesCount, id } = track;
 
+  const [incrementTrackViews, { data, loading, error }] = useMutation(
+    INCREMENT_TRACK_VIEWS,
+    {
+      variables: { trackId: id },
+      onCompleted: (res) => {
+        console.info(res);
+      },
+      onError: (err) => {
+        console.warn(err.message);
+      },
+    }
+  );
+
+  const handleIncrementViews = () => {
+    return incrementTrackViews();
+  };
+
   return (
-    <CardContainer to={`track/${id}`}>
+    <CardContainer to={`track/${id}`} onClick={handleIncrementViews}>
       <CardContent>
         <CardImageContainer>
           <CardImage src={thumbnail || ""} alt={title} />

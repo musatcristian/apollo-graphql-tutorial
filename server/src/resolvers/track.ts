@@ -1,5 +1,9 @@
 import { DataSourceContext } from "../context";
-import { ModuleModel, TrackModel } from "../models";
+import {
+  IncrementTrackViewsResponseModel,
+  ModuleModel,
+  TrackModel,
+} from "../models";
 import { Resolver, ResolverTypeWrapper } from "../types";
 
 export const tracksForHomeResolver: Resolver<
@@ -34,10 +38,36 @@ export const trackModulesResolver: Resolver<
   TrackModel,
   DataSourceContext
 > = (parent, args, context, info) => {
-  console.info(parent, "\ninfo", info);
-
   const { trackAPI } = context.dataSource;
   const { id: trackId } = parent;
 
   return trackAPI.getTrackModules(trackId);
+};
+
+export const incrementTrackViewResolver: Resolver<
+  IncrementTrackViewsResponseModel,
+  {},
+  DataSourceContext,
+  { trackId: string }
+> = async (parent, args, context, info) => {
+  const { trackAPI } = context.dataSource;
+  const { trackId } = args;
+
+  try {
+    const track = await trackAPI.incrementTrackViews(trackId);
+
+    return {
+      code: 200,
+      message: `Views for track ${track.title} have been incremented`,
+      success: true,
+      track,
+    };
+  } catch (err) {
+    return {
+      code: err.extensions.response.status,
+      success: false,
+      message: err.extensions.response.body,
+      track: null,
+    };
+  }
 };

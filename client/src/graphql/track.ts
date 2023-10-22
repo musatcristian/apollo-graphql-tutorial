@@ -53,3 +53,20 @@ export const GET_TRACK = gql(`
         }
     }
 `);
+
+/**
+ * Mutation to increment a track's number of views
+ */
+export const INCREMENT_TRACK_VIEWS = gql(`
+  mutation IncrementTrackViews($trackId: ID!) {
+    incrementTrackViews(trackId: $trackId) {
+      code
+      success
+      message
+      track {
+        id
+        numberOfViews
+      }
+    }
+  }
+`);
